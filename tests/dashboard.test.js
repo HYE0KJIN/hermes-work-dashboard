@@ -20,6 +20,11 @@ const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   assert.equal(document.querySelectorAll('#queueBody tr').length, 7, 'initial queue renders all seven products');
   assert.equal(document.querySelectorAll('#cutGrid .cut').length, 9, 'initial workflow renders nine detail cuts');
+  assert.equal(document.querySelectorAll('#threadItems .thread-item').length, 3, 'initial Threads content queue renders three entries');
+  document.querySelector('#threadTopic').value = '상세페이지 전환 팁 5가지';
+  document.querySelector('#draftThreadButton').click();
+  assert.equal(document.querySelectorAll('#threadItems .thread-item').length, 4, 'draft action appends a Threads content entry');
+  assert.match(document.querySelector('#threadItems').textContent, /상세페이지 전환 팁 5가지/, 'new Threads topic is visible in the queue');
   assert.equal(document.querySelector('#runButton').disabled, true, 'generation stays locked before fact review');
 
   document.querySelector('#statusFilter').value = 'running';

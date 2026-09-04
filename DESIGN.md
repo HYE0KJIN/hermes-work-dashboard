@@ -48,6 +48,7 @@ Proportion: neutral surfaces lead; semantic color appears only on states, stage 
 - **Queue row:** hover wash; selection checkbox; no result shows an explicit empty message.
 - **Workflow stage:** complete, active, waiting, blocked states with a status chip and progress line.
 - **Cut tile:** ready, generating, pending; click opens a text preview toast. It never claims an image was generated.
+- **Threads automation panel:** topic input, 4-step content rail, and a content queue. Its draft action is explicitly simulated; the panel always marks the Meta Threads account as unconnected until a separate connector is configured.
 
 ## 6. Motion & Interaction
 - 160ms `ease-out` for color, surface, and sidebar changes.
