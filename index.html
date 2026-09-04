@@ -4,92 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Hermes 작업 대시보드</title>
+  <title>상세페이지 제작 대시보드</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar" aria-label="주 탐색">
       <div class="sidebar-inner">
-        <a class="brand" href="#top" aria-label="Hermes 홈">
-          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          <span>Hermes</span>
-        </a>
+        <a class="brand" href="#top" aria-label="DetailFlow 홈"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>DetailFlow</span></a>
         <nav class="nav">
-          <a class="nav-item active" href="#top" aria-current="page"><span class="nav-icon">⌂</span><span>대시보드</span></a>
-          <a class="nav-item" href="#queue"><span class="nav-icon">≡</span><span>작업 큐</span><span class="nav-count">7</span></a>
-          <p class="nav-label">관제</p>
-          <a class="nav-item" href="#agents"><span class="nav-icon">◉</span><span>에이전트</span></a>
+          <a class="nav-item active" href="#top" aria-current="page"><span class="nav-icon">⌂</span><span>제작 현황</span></a>
+          <a class="nav-item" href="#queue"><span class="nav-icon">≡</span><span>제작 큐</span><span class="nav-count" id="queueCount">7</span></a>
+          <p class="nav-label">워크플로</p>
+          <a class="nav-item" href="#workflow"><span class="nav-icon">◌</span><span>상세페이지 제작</span></a>
+          <a class="nav-item" href="#assets"><span class="nav-icon">▦</span><span>생성 컷</span></a>
           <a class="nav-item" href="#activity"><span class="nav-icon">↯</span><span>실행 기록</span></a>
-          <a class="nav-item" href="#workload"><span class="nav-icon">⌁</span><span>사용량</span></a>
           <p class="nav-label">시스템</p>
-          <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span><span>설정</span></a>
+          <button class="nav-item nav-button" type="button" data-toast="연동 설정은 아직 연결되지 않았습니다"><span class="nav-icon">⚙</span><span>연동 설정</span></button>
         </nav>
-        <div class="sidebar-footer">
-          <button class="user-row" type="button" data-toast="워크스페이스 메뉴를 열었습니다">
-            <span class="avatar">HS</span><span><strong>헤르메스 운영팀</strong><small>production</small></span><span aria-hidden="true">⋯</span>
-          </button>
-        </div>
+        <div class="sidebar-footer"><button class="user-row" type="button" data-toast="운영 워크스페이스 메뉴를 열었습니다"><span class="avatar">DF</span><span><strong>상품 운영팀</strong><small>production</small></span><span aria-hidden="true">⋯</span></button></div>
       </div>
     </aside>
 
     <main class="main" id="top">
       <header class="header">
-        <div class="header-left">
-          <button class="icon-btn mobile-menu" id="menuButton" type="button" aria-label="사이드바 열기" aria-controls="sidebar" aria-expanded="false">☰</button>
-          <button class="icon-btn desktop-collapse" id="collapseButton" type="button" aria-label="사이드바 접기">☰</button>
-          <span class="header-separator" aria-hidden="true"></span>
-          <h1>작업 대시보드</h1>
-        </div>
-        <div class="header-actions">
-          <span class="live"><i></i> 시스템 정상</span>
-          <button class="icon-btn" id="themeToggle" type="button" aria-label="다크 테마로 전환" title="테마 전환">◐</button>
-          <button class="icon-btn notification" type="button" aria-label="알림 3개" data-toast="읽지 않은 알림이 3개 있습니다">♢<span>3</span></button>
-        </div>
+        <div class="header-left"><button class="icon-btn mobile-menu" id="menuButton" type="button" aria-label="사이드바 열기" aria-controls="sidebar" aria-expanded="false">☰</button><button class="icon-btn desktop-collapse" id="collapseButton" type="button" aria-label="사이드바 접기">☰</button><span class="header-separator" aria-hidden="true"></span><h1>상세페이지 제작</h1></div>
+        <div class="header-actions"><span class="live"><i></i> 데모 워크플로 정상</span><button class="icon-btn" id="themeToggle" type="button" aria-label="다크 테마로 전환" title="테마 전환">◐</button><button class="icon-btn notification" type="button" aria-label="검수 알림 2개" data-toast="검수 대기 항목이 2개 있습니다">♢<span>2</span></button></div>
       </header>
 
       <div class="content">
         <div class="page-root">
-          <div class="intro-row">
-            <div><p class="description">Hermes가 수행하는 전체 작업과 에이전트 상태를 실시간으로 관리합니다 · 2026-08-22</p></div>
-            <div class="page-actions">
-              <button class="btn outline major" id="refreshButton" type="button"><span aria-hidden="true">↻</span> 새로고침</button>
-              <button class="btn primary major" type="button" data-toast="새 작업 생성 화면을 준비했습니다"><span aria-hidden="true">＋</span> 새 작업</button>
-            </div>
-          </div>
+          <div class="intro-row"><div><p class="eyebrow">TAOBAO → SMARTSTORE</p><p class="description">상품 원본을 수집하고, 필수 사실을 검수한 뒤 상세페이지 컷을 제작하는 운영 대시보드입니다.</p></div><div class="page-actions"><button class="btn outline major" id="refreshButton" type="button"><span aria-hidden="true">↻</span> 새로고침</button><button class="btn primary major" id="newTaskButton" type="button"><span aria-hidden="true">＋</span> 새 제작</button></div></div>
 
-          <section class="kpi-grid" aria-label="주요 지표">
-            <article class="card stat"><div class="card-header"><p>활성 실행</p><span class="badge info">+2</span><strong>12</strong></div><div class="stat-footer"><b>가동률 86%</b><span>지난 1시간 기준</span></div></article>
-            <article class="card stat"><div class="card-header"><p>대기 작업</p><span class="badge warning">주의 2</span><strong>7</strong></div><div class="stat-footer"><b>평균 대기 4분</b><span>우선순위 높음 2건</span></div></article>
-            <article class="card stat"><div class="card-header"><p>오늘 완료</p><span class="badge success">↑ 18%</span><strong>43</strong></div><div class="stat-footer"><b>성공률 97.7%</b><span>실패 1건 · 재시도 중</span></div></article>
-            <article class="card stat"><div class="card-header"><p>토큰 사용량</p><span class="badge neutral">68%</span><strong>3.42<span> M</span></strong></div><div class="stat-footer"><b>월 한도 5.0M</b><span>입력 2.61M · 출력 0.81M</span></div></article>
-            <article class="card stat"><div class="card-header"><p>예상 비용</p><span class="badge neutral">이번 달</span><strong>₩184,320</strong></div><div class="stat-footer"><b>어제 대비 +₩12,480</b><span>예산의 61.4%</span></div></article>
+          <section class="kpi-grid" aria-label="상세페이지 제작 지표">
+            <article class="card stat"><div class="card-header"><p>오늘 접수</p><span class="badge info">+3</span><strong>12</strong></div><div class="stat-footer"><b>타오바오 원본 184개</b><span>신규 상품 12건</span></div></article>
+            <article class="card stat"><div class="card-header"><p>필수 검수</p><span class="badge warning">확인 필요</span><strong>4</strong></div><div class="stat-footer"><b>소재·용량·구성품</b><span>생성 전 확인 항목</span></div></article>
+            <article class="card stat"><div class="card-header"><p>컷 생성 중</p><span class="badge info">RUNNING</span><strong>2<span> 건</span></strong></div><div class="stat-footer"><b>총 18 / 36 컷</b><span>평균 처리 4분 12초</span></div></article>
+            <article class="card stat"><div class="card-header"><p>검수 대기</p><span class="badge neutral">9 CUTS</span><strong>3</strong></div><div class="stat-footer"><b>페이지 조립 완료</b><span>판매 문구 최종 확인</span></div></article>
+            <article class="card stat"><div class="card-header"><p>발행 준비</p><span class="badge success">READY</span><strong>6</strong></div><div class="stat-footer"><b>Smartstore 전송 전</b><span>실제 업로드는 미연결</span></div></article>
           </section>
 
           <section class="card table-card" id="queue" aria-labelledby="queue-title">
-            <div class="section-header"><div><h2 id="queue-title">작업 큐</h2><p>우선순위와 실행기 상태를 기준으로 처리됩니다</p></div><button class="text-link" type="button" data-toast="전체 작업 목록으로 이동합니다">전체 보기</button></div>
-            <div class="toolbar">
-              <label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">작업 검색</span><input id="searchInput" type="search" placeholder="작업명 또는 실행기 검색"></label>
-              <label><span class="sr-only">상태 필터</span><select id="statusFilter"><option value="all">모든 상태</option><option value="running">실행 중</option><option value="queued">대기</option><option value="review">검토 필요</option><option value="failed">실패</option></select></label>
-              <label><span class="sr-only">실행기 필터</span><select id="agentFilter"><option value="all">모든 실행기</option><option>Hermes</option><option>Codex</option><option>Claude Code</option><option>Gemini</option></select></label>
-              <button class="btn outline" type="button" id="clearFilters">초기화</button>
-            </div>
-            <div class="table-wrap"><table><thead><tr><th class="check"><input id="selectAll" type="checkbox" aria-label="전체 작업 선택"></th><th>작업</th><th>실행기</th><th>상태</th><th>진행률</th><th class="right">시작 시각</th><th class="action-col"><span class="sr-only">작업</span></th></tr></thead><tbody id="queueBody"></tbody></table></div>
-            <div class="empty-state" id="emptyState" hidden><span aria-hidden="true">⌕</span><p>조건에 맞는 작업이 없습니다</p><button class="btn outline" type="button" id="emptyReset">필터 초기화</button></div>
+            <div class="section-header"><div><h2 id="queue-title">제작 큐</h2><p>상품별 제작 단계를 확인하고, 하나를 선택해 상세 작업을 이어갑니다.</p></div><button class="text-link" type="button" id="showAll">전체 보기</button></div>
+            <div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">상품 검색</span><input id="searchInput" type="search" placeholder="상품명 또는 소스 ID 검색"></label><label><span class="sr-only">상태 필터</span><select id="statusFilter"><option value="all">모든 상태</option><option value="capture">원본 수집</option><option value="review">검수 필요</option><option value="running">생성 중</option><option value="ready">검수 대기</option><option value="queued">대기</option></select></label><button class="btn outline" type="button" id="clearFilters">초기화</button></div>
+            <div class="table-wrap"><table><thead><tr><th class="check"><input id="selectAll" type="checkbox" aria-label="표시된 상품 전체 선택"></th><th>상품</th><th>원본</th><th>현재 단계</th><th>상태</th><th>진행률</th><th class="right">업데이트</th><th class="action-col"><span class="sr-only">작업</span></th></tr></thead><tbody id="queueBody"></tbody></table></div>
+            <div class="empty-state" id="emptyState" hidden><span aria-hidden="true">⌕</span><p>조건에 맞는 상품이 없습니다</p><button class="btn outline" type="button" id="emptyReset">필터 초기화</button></div>
           </section>
 
-          <div class="lower-grid">
-            <section class="card chart-card" id="workload" aria-labelledby="chart-title"><div class="section-header"><div><h2 id="chart-title">7일 작업량</h2><p>완료 및 실패한 실행 건수</p></div><div class="legend"><span><i class="done"></i>완료</span><span><i class="fail"></i>실패</span></div></div><div class="chart-container"><svg id="workloadChart" viewBox="0 0 720 240" role="img" aria-labelledby="chart-title chart-desc"><desc id="chart-desc">8월 16일부터 22일까지 완료와 실패 작업량 막대 차트</desc></svg></div></section>
-            <section class="card" id="agents" aria-labelledby="agent-title"><div class="section-header"><div><h2 id="agent-title">에이전트 상태</h2><p>가용성과 최근 응답</p></div><span class="badge success">4/4 연결</span></div><div class="agent-list" id="agentList"></div></section>
-          </div>
+          <section class="workflow-grid" id="workflow" aria-labelledby="workflow-title">
+            <article class="card selected-card"><div class="section-header"><div><p class="eyebrow">SELECTED PRODUCT</p><h2 id="workflow-title">선택 상품 작업</h2><p id="selectedMeta">원본을 확인하고 필수 사실을 검수한 뒤 생성할 수 있습니다.</p></div><span class="status review" id="selectedStatus"><i></i>검수 필요</span></div>
+              <div class="product-summary"><div class="product-thumb" aria-hidden="true"><span class="tumbler-shape"></span></div><div><strong id="selectedTitle">매트 진공 보온 텀블러</strong><p id="selectedSource">taobao / 891899395011 · 원본 이미지 19개</p><div class="product-tags"><span>스테인리스</span><span>500ml</span><span>모스 그린</span></div></div><button class="row-action" id="sourceButton" type="button" aria-label="선택 상품 원본 보기">⋯</button></div>
+              <ol class="stage-rail" aria-label="상세페이지 제작 단계"><li class="done"><span>01</span><b>원본 수집</b><small>19개 분류</small></li><li class="done"><span>02</span><b>판매 전략</b><small>문구 초안</small></li><li class="active"><span>03</span><b>사실 검수</b><small>1개 필요</small></li><li><span>04</span><b>9컷 생성</b><small>대기</small></li><li><span>05</span><b>최종 검수</b><small>대기</small></li></ol>
+              <div class="gate-panel"><div class="gate-heading"><div><h3>필수 사실 검수</h3><p>근거 없는 스펙·효능 표현은 상세페이지 생성에서 제외합니다.</p></div><span class="badge warning" id="factCount">2 / 3 확인</span></div><div class="facts" id="facts"><button class="fact checked locked" type="button"><span class="tick">✓</span><span>원본 이미지 사용 범위와 변형 가능 범위가 분리되었습니다.</span><em>자동 확인</em></button><button class="fact" type="button" id="factToggle"><span class="tick">✓</span><span>소재·용량·구성품을 판매자 스펙으로 확인했습니다.</span><em>확인 필요</em></button><button class="fact checked locked" type="button"><span class="tick">✓</span><span>근거 없는 보온 시간·효능·인증 표현을 생성에서 제외합니다.</span><em>자동 적용</em></button></div><div class="gate-actions"><span id="gateHint">소재·용량·구성품을 확인하면 9컷 생성 단계를 시작할 수 있습니다.</span><button class="btn primary" id="runButton" type="button" disabled>9컷 생성 시작</button></div></div>
+            </article>
 
-          <section class="card" id="activity" aria-labelledby="activity-title"><div class="section-header"><div><h2 id="activity-title">최근 활동</h2><p>Hermes 오케스트레이션 이벤트</p></div><button class="text-link" type="button" data-toast="활동 기록을 모두 확인했습니다">모두 읽음</button></div><ol class="timeline" id="timeline"></ol></section>
+            <article class="card assets-card" id="assets"><div class="section-header"><div><p class="eyebrow">DETAIL CUTS</p><h2>상세페이지 컷</h2><p id="assetSubtitle">검수 완료 후 9개의 세로 컷을 순서대로 생성합니다.</p></div><span class="badge neutral" id="cutProgress">0 / 9</span></div><div class="cut-grid" id="cutGrid" aria-label="상세페이지 9컷"></div><div class="asset-footer"><div class="progress"><span id="generationProgress"></span></div><span id="generationLabel">생성 전</span><button class="btn outline" type="button" id="previewButton" disabled>전체 미리보기</button></div></article>
+          </section>
+
+          <section class="card activity-card" id="activity" aria-labelledby="activity-title"><div class="section-header"><div><h2 id="activity-title">최근 활동</h2><p>선택 상품과 제작 큐의 워크플로 이벤트입니다.</p></div><button class="text-link" type="button" id="clearActivity">모두 읽음</button></div><ol class="timeline" id="timeline"></ol></section>
         </div>
       </div>
     </main>
   </div>
   <div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
-  <div class="selection-bar" id="selectionBar" hidden><span id="selectionCount">0개 선택됨</span><button class="btn ghost danger" type="button" id="cancelSelected">선택 취소</button><button class="btn primary" type="button" id="runSelected">선택 실행</button></div>
+  <div class="selection-bar" id="selectionBar" hidden><span id="selectionCount">0개 선택됨</span><button class="btn ghost danger" type="button" id="cancelSelected">선택 취소</button><button class="btn primary" type="button" id="runSelected">선택 작업 열기</button></div>
   <div class="toast-region" id="toastRegion" role="status" aria-live="polite" aria-atomic="true"></div>
   <script src="app.js"></script>
 </body>
